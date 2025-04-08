@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Happy Birthday Web Version</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+        }
+
+        .heart {
+            width: 100px;
+            height: 90px;
+            cursor: pointer;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 90px;
+            background: #ff0000;
+            border-radius: 50px 50px 0 0;
+        }
+
+        .heart::before {
+            left: 60px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        .floating-text {
+            color: white;
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            cursor: pointer;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .message-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 500px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 99;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart" onclick="showMessage()"></div>
+        <div class="floating-text" onclick="showMessage()">my love</div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="message-box" id="messageBox">
+        <h2>🎉 Happy Birthday My Love! 🎂</h2>
+        <p>Di hari spesialmu ini, aku ingin mengucapkan...</p>
+        <p>Terima kasih sudah menjadi cahaya dalam hidupku. Kamu adalah anugerah terindah yang pernah kuterima. Setiap momen bersamamu adalah harta berharga yang selalu ingin kujaga.</p>
+        <p>Semoga tahun ini membawa kebahagiaan lebih, kesuksesan yang gemilang, dan semua impianmu terkabul. Aku akan selalu di sini untuk mendukungmu dalam setiap langkah.</p>
+        <button onclick="closeMessage()">Tutup</button>
+    </div>
+
+    <script>
+        function showMessage() {
+            document.getElementById('messageBox').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeMessage() {
+            document.getElementById('messageBox').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        // Close message when clicking outside
+        document.getElementById('overlay').addEventListener('click', closeMessage);
+    </script>
+</body>
+</html>
